@@ -1,0 +1,4 @@
+repository "RPG@kingsoulz4a@cloud"
+  path "/"
+    br "/main"
+    co "/main"
