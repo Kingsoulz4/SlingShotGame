@@ -54,6 +54,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -204,6 +205,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 1.2
+  _fixedJoystick: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252,
+    type: 3}
 --- !u!114 &1281554444617518203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f7b6b9a13386bb44a0f5f8ad15729a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   weaponVelocity: 2
   ammoPrefab: {fileID: 1606624984151891681, guid: 130b7aa0faab7d344bdfee7a618e09cb,
     type: 3}

@@ -10,6 +10,8 @@ public class Player : Character
     public Inventory inventoryPrefab;
     Inventory inventory;
     Coroutine damageCoroutine;
+
+
     
     // void Start()
     // {
@@ -77,7 +79,7 @@ public class Player : Character
             
             if(hitPoints.value<=float.Epsilon)
             {
-                KillCharacter();
+                //KillCharacter();
                 break;
             }
             if(interval>float.Epsilon)
