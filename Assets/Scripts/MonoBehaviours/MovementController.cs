@@ -21,7 +21,7 @@ public class MovementController : MonoBehaviour
         }
         else
         {
-            _fixedJoystick.gameObject.SetActive(false);
+            _fixedJoystick.gameObject.SetActive(true);
         }
     }
 
@@ -33,7 +33,7 @@ public class MovementController : MonoBehaviour
     }
     private void FixedUpdate() {
         
-        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer || _fixedJoystick.Horizontal != 0 || _fixedJoystick.Vertical != 0)
         {
             Debug.Log("Android move joystick");
             movement.x = _fixedJoystick.Horizontal;
@@ -72,5 +72,6 @@ public class MovementController : MonoBehaviour
         //Update the animator with the new movement values
         animator.SetFloat("xDir", movement.x);
         animator.SetFloat("yDir", movement.y);
+        
     }
 }

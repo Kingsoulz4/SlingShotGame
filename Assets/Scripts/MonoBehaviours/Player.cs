@@ -10,20 +10,21 @@ public class Player : Character
     public Inventory inventoryPrefab;
     Inventory inventory;
     Coroutine damageCoroutine;
+    RPGGameManager _gameManager = null;
 
 
-    
-    // void Start()
-    // {
-    //     inventory = Instantiate(inventoryPrefab);
-    //     healthBar = Instantiate(healthBarPrefab);
-    //     healthBar.character = this;
-    //     hitPoints.value = startingHitPoints;
-    // }
+    void Start()
+    {
+        _gameManager = GameObject.Find("GameManager").GetComponent<RPGGameManager>();
+        inventory = Instantiate(inventoryPrefab);
+        healthBar = Instantiate(healthBarPrefab);
+        healthBar.character = this;
+        hitPoints.value = startingHitPoints;
+    }
 
     private void OnEnable()
     {
-        ResetCharacter();
+        //ResetCharacter();
     }
     
     // be called whenever this object overlap with a trigger collider
@@ -75,11 +76,10 @@ public class Player : Character
         while(true)
         {
             print("hitPoints: "+this.hitPoints.value);
-            this.hitPoints.value-=damage;
-            
+            this.hitPoints.value-=damage; 
             if(hitPoints.value<=float.Epsilon)
             {
-                //KillCharacter();
+                KillCharacter();
                 break;
             }
             if(interval>float.Epsilon)
@@ -96,9 +96,12 @@ public class Player : Character
     public override void KillCharacter()
     {
         //use the base keyword to refer to the parent or base class that the current class inherit from
+        
         base.KillCharacter();
         Destroy(healthBar.gameObject);
         Destroy(inventory.gameObject);
+        _gameManager.SwitchToGameOVerScene();
+
     }
     public override void ResetCharacter()
     {
@@ -117,6 +120,7 @@ public class Player : Character
             if(damageCoroutine==null )
             {
                 print("Starting damage player");
+                _gameManager.AudioCon.PlayDamagingPlayerSound();
                 damageCoroutine = StartCoroutine(DamageCharacter(2, 1.0f));
             }
         }

@@ -17,6 +17,8 @@ public class Weapon : MonoBehaviour
     float positiveSlope;
     float negativeSlope;
     //An enum used to describe the direction the Player is firing in
+    AudioController audioController;
+
     enum Quadrant
     {
         East,
@@ -47,6 +49,7 @@ public class Weapon : MonoBehaviour
             ammoObject.SetActive(false);
             ammoPool.Add(ammoObject);
         }
+        audioController = GameObject.Find("AudioController").GetComponent<AudioController>();
     }
     void Start()
     {
@@ -203,7 +206,9 @@ public class Weapon : MonoBehaviour
             animator.SetBool("isFiring", true);
             animator.SetFloat("fireXDir", quadrantVector.x);
             animator.SetFloat("fireYDir", quadrantVector.y);
-            isFiring=false;
+            audioController.PlayFiringSound();
+            isFiring =false;
+            
         }
         else
         {
